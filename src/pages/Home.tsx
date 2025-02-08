@@ -12,6 +12,8 @@ import {
 import toast from "react-hot-toast";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Typewriter from 'react-typewriter-effect';  // Import the Typewriter effect
+
 
 export default function Home() {
   const navigate = useNavigate();
@@ -35,9 +37,35 @@ export default function Home() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-10"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 relative">
-          <div className="text-center">
-            <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-6">
-              Make Their Day Special
+          <div className="text-center flex justify-center items-center w-full flex-col">
+            <h1 className="text-3xl md:text-7xl font-bold text-transparent text-center mx-auto bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-6">
+              <Typewriter
+                textStyle={{
+                  
+                  backgroundImage:
+                    "linear-gradient(to right, #a855f7, #ec4899)",
+                  WebkitBackgroundClip: "text",
+                  color: "transparent",
+                  display: "inline-block", // Keeps it inline with flex
+                  wordBreak: "break-word", // Handles word overflow
+                  overflowWrap: "break-word", // Wraps the word if needed
+                  width: "100%",
+                  textAlign: "center",
+                }}
+                startDelay={500}
+                cursorColor="transparent"
+                multiText={[
+                  "Create Unforgettable Memories",
+                  "Celebrate Every Moment",
+                  "Surprise Your Loved Ones",
+                  "Make Their Day Special",
+                ]}
+                multiTextDelay={1000}
+                typeSpeed={100}
+                backSpeed={50}
+                backDelay={1000}
+                loop={true}
+              />
             </h1>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
               Surprise your loved ones with personalized celebration calls on
@@ -112,11 +140,7 @@ export default function Home() {
             {
               name: "Basic",
               price: "2000 - 3000",
-              features: [
-                "1 call",
-                "Personal message",
-                "Basic customization",
-              ],
+              features: ["1 call", "Personal message", "Basic customization"],
             },
             {
               name: "Premium",
