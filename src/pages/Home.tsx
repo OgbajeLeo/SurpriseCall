@@ -17,7 +17,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   const handleBooking = (plan: string) => {
-    toast.success(`Selected ${plan} plan! Redirecting to contact form...`);
+    // toast.success(`Selected ${plan} plan! Redirecting to contact form...`);
     navigate("/contact");
   };
 
@@ -59,7 +59,7 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-center text-white mb-12">
           Special Occasions We Celebrate
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
           {[
             {
               icon: Gift,
@@ -70,6 +70,11 @@ export default function Home() {
               icon: Heart,
               title: "Anniversaries",
               desc: "Celebrate love and togetherness",
+            },
+            {
+              icon: Calendar,
+              title: "Valentine",
+              desc: "Express your love and affection",
             },
             {
               icon: GraduationCap,
@@ -102,42 +107,42 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-center text-white mb-12">
           Choose Your Package
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto gap-8">
           {[
             {
               name: "Basic",
               price: "2000 - 3000",
               features: [
+                "1 call",
                 "Personal message",
-                "Scheduled call",
                 "Basic customization",
               ],
             },
             {
               name: "Premium",
-              price: "3000 - 4000",
+              price: "4000 - 5000",
               features: [
                 "Personal message",
-                "Scheduled call",
+                "2 calls",
                 "Full customization",
-                "Background music",
+                // "Background music",
                 "Video message",
               ],
               popular: true,
             },
-            {
-              name: "Ultimate",
-              price: "4000 - 5000",
-              features: [
-                "Personal message",
-                "Scheduled call",
-                "Full customization",
-                "Background music",
-                "Video message",
-                "Gift coordination",
-                "Multiple calls",
-              ],
-            },
+            // {
+            //   name: "Ultimate",
+            //   price: "4000 - 5000",
+            //   features: [
+            //     "Personal message",
+            //     "Scheduled call",
+            //     "Full customization",
+            //     "Background music",
+            //     "Video message",
+            //     "Gift coordination",
+            //     "Multiple calls",
+            //   ],
+            // },
           ].map((plan, index) => (
             <div
               key={index}
