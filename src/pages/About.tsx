@@ -29,8 +29,8 @@ export default function About() {
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-20">
           {[
-            { icon: Heart, title: 'Personalized Touch', value: '1000+', label: 'Happy Celebrations' },
-            { icon: Users, title: 'Growing Community', value: '5000+', label: 'Satisfied Customers' },
+            { icon: Heart, title: 'Personalized Touch', value: '80+', label: 'Happy Celebrations' },
+            { icon: Users, title: 'Growing Community', value: '200+', label: 'Satisfied Customers' },
             { icon: Award, title: 'Excellence', value: '98%', label: 'Satisfaction Rate' },
             { icon: Clock, title: 'Reliability', value: '24/7', label: 'Support Available' },
           ].map((stat, index) => (
