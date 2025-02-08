@@ -1,10 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Mail, Phone as PhoneIcon, MapPin } from "lucide-react";
-import ContactForm from "../components/ContactForm";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import emailjs from "emailjs-com";
+
+// Define a type for the form data
+interface FormData {
+  fullName: string;
+  recipientName: string;
+  relationship: string;
+  contact: string;
+  callPurpose: string;
+  bestTime: string;
+  specialMessage: string;
+  callDate: string;
+}
 
 export default function Contact() {
+  // Initialize the formData with a proper type
+  const [formData, setFormData] = useState<FormData>({
+    fullName: "",
+    recipientName: "",
+    relationship: "",
+    contact: "",
+    callPurpose: "",
+    bestTime: "",
+    specialMessage: "",
+    callDate: "",
+  });
+
+  const [errors, setErrors] = useState<any>({});
+  const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -12,6 +39,72 @@ export default function Contact() {
       once: true,
     });
   }, []);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = e.target;
+
+    // Clear the error for the specific field that is being updated
+    setErrors((prevErrors: any) => ({
+      ...prevErrors,
+      [id]: "", // Clears the error for this field
+    }));
+
+    setFormData({
+      ...formData,
+      [id]: value,
+    });
+  };
+
+  const validateForm = () => {
+    const newErrors: { [key: string]: string } = {};
+    Object.keys(formData).forEach((key) => {
+      if (!formData[key as keyof FormData]) {
+        newErrors[key] = `${key.replace(/([A-Z])/g, " $1")} is required`;
+      }
+    });
+    return newErrors;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const validationErrors = validateForm();
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
+
+      // EmailJS send functionality
+      const templateParams = {
+        fullName: formData.fullName,
+        recipientName: formData.recipientName,
+        relationship: formData.relationship,
+        contact: formData.contact,
+        callPurpose: formData.callPurpose,
+        bestTime: formData.bestTime,
+        specialMessage: formData.specialMessage,
+        callDate: formData.callDate,
+      };
+      setLoading(true);
+      // emailjs
+      //   .send(
+      //     "service_8ryr2k6", // Replace with your service ID
+      //     "template_l2ee4xf", // Replace with your template ID
+      //     templateParams,
+      //     "tzNBPOYcCpnQxURaP" // Replace with your user ID
+      //   )
+      //   .then(
+      //     (response) => {
+      //       setLoading(false);
+      //     },
+      //     (error) => {
+      //       console.error("Failed to send message.", error);
+      //       setLoading(false);
+      //     }
+      //   );
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 pt-16">
@@ -38,8 +131,8 @@ export default function Contact() {
             {
               icon: PhoneIcon,
               title: "Phone",
-              content: "+1 (555) 123-4567",
-              description: "Monday to Friday, 9am to 6pm EST",
+              content: "+234 813 252 2500",
+              description: "Monday to Friday, 9am to 6pm ",
             },
             {
               icon: Mail,
@@ -50,7 +143,7 @@ export default function Contact() {
             {
               icon: MapPin,
               title: "Office",
-              content: "New York, NY",
+              content: "FCT Abuja, Nigeria",
               description: "Available for in-person consultations",
             },
           ].map((contact, index) => (
@@ -78,7 +171,10 @@ export default function Contact() {
           <h2 className="text-3xl font-semibold text-center text-white mb-6">
             Fill Out the Form Below
           </h2>
-          <form className="space-y-6 bg-slate-800/50 p-8 rounded-xl border border-slate-700 backdrop-blur-sm">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6 bg-slate-800/50 p-8 rounded-xl border border-slate-700 backdrop-blur-sm"
+          >
             {/* Full Name */}
             <div>
               <label
@@ -89,10 +185,19 @@ export default function Contact() {
               </label>
               <input
                 type="text"
-                id="full-name"
+                id="fullName"
                 placeholder="Enter your full name"
-                className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
+                value={formData.fullName}
+                onChange={handleChange}
+                className={`w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500 ${
+                  errors.fullName ? "border-red-500" : ""
+                }`}
               />
+              {errors.fullName && (
+                <p className="text-red-500 capitalize text-sm">
+                  {errors.fullName}
+                </p>
+              )}
             </div>
 
             {/* Recipient Name */}
@@ -105,10 +210,19 @@ export default function Contact() {
               </label>
               <input
                 type="text"
-                id="recipient-name"
+                id="recipientName"
                 placeholder="Enter the recipient's name"
-                className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
+                value={formData.recipientName}
+                onChange={handleChange}
+                className={`w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500 ${
+                  errors.recipientName ? "border-red-500" : ""
+                }`}
               />
+              {errors.recipientName && (
+                <p className="text-red-500 capitalize text-sm">
+                  {errors.recipientName}
+                </p>
+              )}
             </div>
 
             {/* Relationship */}
@@ -123,8 +237,17 @@ export default function Contact() {
                 type="text"
                 id="relationship"
                 placeholder="Enter your relationship (e.g., Friend, Partner)"
-                className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
+                value={formData.relationship}
+                onChange={handleChange}
+                className={`w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500 ${
+                  errors.relationship ? "border-red-500" : ""
+                }`}
               />
+              {errors.relationship && (
+                <p className="text-red-500 capitalize text-sm">
+                  {errors.relationship}
+                </p>
+              )}
             </div>
 
             {/* Contact */}
@@ -139,8 +262,17 @@ export default function Contact() {
                 type="text"
                 id="contact"
                 placeholder="Enter your contact info"
-                className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
+                value={formData.contact}
+                onChange={handleChange}
+                className={`w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500 ${
+                  errors.contact ? "border-red-500" : ""
+                }`}
               />
+              {errors.contact && (
+                <p className="text-red-500 capitalize text-sm">
+                  {errors.contact}
+                </p>
+              )}
             </div>
 
             {/* Purpose of the Call */}
@@ -153,10 +285,19 @@ export default function Contact() {
               </label>
               <input
                 type="text"
-                id="call-purpose"
+                id="callPurpose"
                 placeholder="Enter the purpose of the call"
-                className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
+                value={formData.callPurpose}
+                onChange={handleChange}
+                className={`w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500 ${
+                  errors.callPurpose ? "border-red-500" : ""
+                }`}
               />
+              {errors.callPurpose && (
+                <p className="text-red-500 capitalize text-sm">
+                  {errors.callPurpose}
+                </p>
+              )}
             </div>
 
             {/* Best Time to Reach the Recipient */}
@@ -169,10 +310,19 @@ export default function Contact() {
               </label>
               <input
                 type="text"
-                id="best-time"
+                id="bestTime"
                 placeholder="Enter the best time to call the recipient"
-                className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
+                value={formData.bestTime}
+                onChange={handleChange}
+                className={`w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500 ${
+                  errors.bestTime ? "border-red-500" : ""
+                }`}
               />
+              {errors.bestTime && (
+                <p className="text-red-500 capitalize text-sm">
+                  {errors.bestTime}
+                </p>
+              )}
             </div>
 
             {/* Special Message for the Recipient */}
@@ -184,11 +334,20 @@ export default function Contact() {
                 A Special Message for the Recipient
               </label>
               <textarea
-                id="special-message"
+                id="specialMessage"
                 placeholder="Write a message for the recipient"
                 rows={4}
-                className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
+                value={formData.specialMessage}
+                onChange={handleChange}
+                className={`w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500 ${
+                  errors.specialMessage ? "border-red-500" : ""
+                }`}
               />
+              {errors.specialMessage && (
+                <p className="text-red-500 capitalize text-sm">
+                  {errors.specialMessage}
+                </p>
+              )}
             </div>
 
             {/* Date to Make the Call */}
@@ -201,16 +360,26 @@ export default function Contact() {
               </label>
               <input
                 type="date"
-                id="call-date"
-                className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
+                id="callDate"
+                value={formData.callDate}
+                onChange={handleChange}
+                className={`w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500 ${
+                  errors.callDate ? "border-red-500" : ""
+                }`}
               />
+              {errors.callDate && (
+                <p className="text-red-500 capitalize text-sm">
+                  {errors.callDate}
+                </p>
+              )}
             </div>
 
             <button
+              disabled={loading}
               type="submit"
               className="w-full py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all"
             >
-              Submit
+              {loading ? "Sending..." : "Send Message"}
             </button>
           </form>
         </div>
