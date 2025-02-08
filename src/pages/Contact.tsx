@@ -79,77 +79,133 @@ export default function Contact() {
             Fill Out the Form Below
           </h2>
           <form className="space-y-6 bg-slate-800/50 p-8 rounded-xl border border-slate-700 backdrop-blur-sm">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="text-white font-medium mb-2 block"
-                >
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  placeholder="Enter your name"
-                  className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="text-white font-medium mb-2 block"
-                >
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="Enter your email"
-                  className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
-                />
-              </div>
-            </div>
+            {/* Full Name */}
             <div>
               <label
-                htmlFor="phone"
+                htmlFor="full-name"
                 className="text-white font-medium mb-2 block"
               >
-                Phone Number
+                Your Full Name (Mr/Mrs/Ms.)
               </label>
               <input
-                type="tel"
-                id="phone"
-                placeholder="Enter your phone number"
+                type="text"
+                id="full-name"
+                placeholder="Enter your full name"
                 className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
               />
             </div>
+
+            {/* Recipient Name */}
             <div>
               <label
-                htmlFor="event-date"
+                htmlFor="recipient-name"
                 className="text-white font-medium mb-2 block"
               >
-                Date of Event
+                Recipient's Name (Mr/Mrs/Ms.)
               </label>
               <input
-                type="date"
-                id="event-date"
+                type="text"
+                id="recipient-name"
+                placeholder="Enter the recipient's name"
                 className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
               />
             </div>
+
+            {/* Relationship */}
             <div>
               <label
-                htmlFor="message"
+                htmlFor="relationship"
                 className="text-white font-medium mb-2 block"
               >
-                Your Message
+                Your Relationship with the Recipient
+              </label>
+              <input
+                type="text"
+                id="relationship"
+                placeholder="Enter your relationship (e.g., Friend, Partner)"
+                className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
+              />
+            </div>
+
+            {/* Contact */}
+            <div>
+              <label
+                htmlFor="contact"
+                className="text-white font-medium mb-2 block"
+              >
+                Your Contact Information (Phone/Email)
+              </label>
+              <input
+                type="text"
+                id="contact"
+                placeholder="Enter your contact info"
+                className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
+              />
+            </div>
+
+            {/* Purpose of the Call */}
+            <div>
+              <label
+                htmlFor="call-purpose"
+                className="text-white font-medium mb-2 block"
+              >
+                Purpose of the Call
+              </label>
+              <input
+                type="text"
+                id="call-purpose"
+                placeholder="Enter the purpose of the call"
+                className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
+              />
+            </div>
+
+            {/* Best Time to Reach the Recipient */}
+            <div>
+              <label
+                htmlFor="best-time"
+                className="text-white font-medium mb-2 block"
+              >
+                Best Time to Reach the Recipient
+              </label>
+              <input
+                type="text"
+                id="best-time"
+                placeholder="Enter the best time to call the recipient"
+                className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
+              />
+            </div>
+
+            {/* Special Message for the Recipient */}
+            <div>
+              <label
+                htmlFor="special-message"
+                className="text-white font-medium mb-2 block"
+              >
+                A Special Message for the Recipient
               </label>
               <textarea
-                id="message"
-                placeholder="Tell us more about the surprise"
+                id="special-message"
+                placeholder="Write a message for the recipient"
                 rows={4}
                 className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
               />
             </div>
+
+            {/* Date to Make the Call */}
+            <div>
+              <label
+                htmlFor="call-date"
+                className="text-white font-medium mb-2 block"
+              >
+                Date to Make the Call
+              </label>
+              <input
+                type="date"
+                id="call-date"
+                className="w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500"
+              />
+            </div>
+
             <button
               type="submit"
               className="w-full py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all"
