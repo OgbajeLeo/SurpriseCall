@@ -131,19 +131,19 @@ export default function Contact() {
             {
               icon: PhoneIcon,
               title: "Phone",
-              content: "+234 813 252 2500",
-              description: "Monday to Friday, 9am to 6pm ",
+              content: "+234 8066183684",
+              description: "Sunday to Saturday, 6am to 9pm ",
             },
             {
               icon: Mail,
               title: "Email",
-              content: "hello@surprisecall.com",
+              content: "Surprisecall@gmail.com",
               description: "We respond within 24 hours",
             },
             {
               icon: MapPin,
               title: "Office",
-              content: "FCT Abuja, Nigeria",
+              content: "08066183684, Nigeria",
               description: "Available for in-person consultations",
             },
           ].map((contact, index) => (
