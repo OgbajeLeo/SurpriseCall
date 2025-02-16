@@ -182,13 +182,13 @@ export default function Home() {
                 </span>
               )}
               <h3 className="text-2xl font-bold text-white mb-4">
-                {plan.name}
+                {plan.name} {' '}<span className="text-[14px] text-gray-400 font-[300]">( local -International)</span>
               </h3>
               <div className="text-4xl font-bold text-white mb-6">
                 ₦{plan.price}
                 <span className="text-lg text-gray-400">/call</span>
               </div>
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-4 mb-8 h-[140px]">
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-center text-gray-300">
                     <CheckCircle2 className="w-5 h-5 text-purple-400 mr-2" />

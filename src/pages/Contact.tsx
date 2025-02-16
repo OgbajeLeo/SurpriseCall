@@ -10,6 +10,7 @@ interface FormData {
   recipientName: string;
   relationship: string;
   contact: string;
+  recipientContact: string;
   callPurpose: string;
   bestTime: string;
   specialMessage: string;
@@ -23,6 +24,7 @@ export default function Contact() {
     recipientName: "",
     relationship: "",
     contact: "",
+    recipientContact: "",
     callPurpose: "",
     bestTime: "",
     specialMessage: "",
@@ -81,6 +83,7 @@ export default function Contact() {
         recipientName: formData.recipientName,
         relationship: formData.relationship,
         contact: formData.contact,
+        recipientContact: formData.recipientContact,
         callPurpose: formData.callPurpose,
         bestTime: formData.bestTime,
         specialMessage: formData.specialMessage,
@@ -143,7 +146,7 @@ export default function Contact() {
             {
               icon: MapPin,
               title: "Office",
-              content: "08066183684, Nigeria",
+              content: "Adiza Estate Garki, FCT Abuja, Nigeria",
               description: "Available for in-person consultations",
             },
           ].map((contact, index) => (
@@ -249,6 +252,32 @@ export default function Contact() {
                 </p>
               )}
             </div>
+
+            {/*Recepient Contact */}
+            <div>
+              <label
+                htmlFor="contact"
+                className="text-white font-medium mb-2 block"
+              >
+                Recipient Contact Number
+              </label>
+              <input
+                type="text"
+                id="contact"
+                placeholder="Enter your contact info"
+                value={formData.recipientContact}
+                onChange={handleChange}
+                className={`w-full p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-2 focus:ring-purple-500 ${
+                  errors.recipientContact ? "border-red-500" : ""
+                }`}
+              />
+              {errors.recipientContact && (
+                <p className="text-red-500 capitalize text-sm">
+                  {errors.recipientContact}
+                </p>
+              )}
+            </div>
+
 
             {/* Contact */}
             <div>

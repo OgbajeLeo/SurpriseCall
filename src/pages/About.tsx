@@ -16,7 +16,7 @@ export default function About() {
           <div className="bg-slate-800/50 backdrop-blur-sm p-8 rounded-xl border border-slate-700">
             <h2 className="text-2xl font-bold text-white mb-4">Our Story</h2>
             <p className="text-gray-300 leading-relaxed">
-              Founded in 2024, SurpriseCall was born from a simple idea: to help people create unforgettable moments for their loved ones. We understand that sometimes distance keeps us apart from those we care about most, but that shouldn't stop us from making their special days extraordinary.
+              Founded in 2023, SurpriseCall was born from a simple idea: to help people create unforgettable moments for their loved ones. We understand that sometimes distance keeps us apart from those we care about most, but that shouldn't stop us from making their special days extraordinary.
             </p>
           </div>
           <div className="bg-slate-800/50 backdrop-blur-sm p-8 rounded-xl border border-slate-700">

@@ -47,7 +47,7 @@ export default function HowItWorks() {
               icon: MessageCircle,
               title: "Plan the Message",
               description:
-                "Craft a personalized message or choose from our templates.",
+                "Craft a personalized message.",
             },
             {
               icon: Gift,
@@ -68,7 +68,7 @@ export default function HowItWorks() {
               data-aos-delay={`${200 + index * 100}`}
               className="relative"
             >
-              <div className="bg-slate-800/50 backdrop-blur-sm p-8 rounded-xl border border-slate-700 text-center">
+              <div className="bg-slate-800/50 backdrop-blur-sm p-8 rounded-xl border border-slate-700 text-center h-[260px]">
                 <step.icon className="w-16 h-16 text-purple-400 mx-auto mb-6" />
                 <h3 className="text-xl font-bold text-white mb-4">
                   {step.title}
@@ -102,7 +102,7 @@ export default function HowItWorks() {
               {
                 question: "Can I customize the message?",
                 answer:
-                  "Yes! You can fully customize your message or use our templates as inspiration.",
+                  "Yes! You can fully customize your message.",
               },
               {
                 question: "What if the recipient misses the call?",
